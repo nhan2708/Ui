@@ -1,16 +1,50 @@
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local player = game.Players.LocalPlayer
+local gui = player:WaitForChild("PlayerGui") -- Get the player's PlayerGui
 
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "MyButtonGui"
+screenGui.Parent = gui
+
+local button = Instance.new("TextButton") -- Use TextButton instead of ImageButton
+button.Name = "MyButton"
+button.Font = Enum.Font.SourceSansBold
+button.Size = UDim2.new(0, 100, 0, 50) -- Set size
+button.Position = UDim2.new(0, 10, 0.5, -25) -- Set position to the left with an X offset of 10 pixel
+button.BackgroundColor3 = Color3.fromRGB(255,255,255) -- Set button background color to red
+
+local function onClick()
+    toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+end
+
+button.MouseButton1Click:Connect(onClick)
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tienvn123tkvn/Test/main/ZINERHUB_Ui.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tienvn123tkvn/Test/main/ZierhubManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tienvn123tkvn/Test/main/ZierhubfaceManager.lua"))()
+----------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
-    Title = "VTN test " .. Fluent.Version,
-    SubTitle = "by VTN",
+    Title = "NHN HUB",
     TabWidth = 160,
     Size = UDim2.fromOffset(500, 320),
-    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Dark",
-    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+    Acrylic = true,
+    Theme = "Black",
+    MinimizeKey = Enum.KeyCode.End
 })
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main Farm", Icon = "home" }),
+    Setting = Window:AddTab({ Title = "Settings", Icon = "settings" }),
+    Status = Window:AddTab({ Title = "Server Stats", Icon = "activity" }),
+    Stats = Window:AddTab({ Title = "Stats", Icon = "plus-circle" }),
+    Player = Window:AddTab({ Title = "Player pvp", Icon = "baby" }),
+    Teleport = Window:AddTab({ Title = "Teleport", Icon = "palmtree" }),
+    Fruit = Window:AddTab({ Title = "Fruit Blox ESP", Icon = "apple" }),
+    Raid = Window:AddTab({ Title = "Dungeon", Icon = "swords" }),
+    Race = Window:AddTab({ Title = "Race Trial V4", Icon = "chevrons-right" }),
+    Shop = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
+	Misc = Window:AddTab({ Title = "Miscellaneous", Icon = "list-plus" }),
+    Hop = Window:AddTab({ Title = "Hop Server", Icon = "wifi" }),
+}
 
 --close UI
 local ScreenGui = Instance.new("ScreenGui")
